@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .container{
+      min-width: 30px;
+      padding: 20px;
+      background: #f55;
+      min-height: 50px;
+      margin: 50px;
+      display: inline-block;
+      vertical-align: top;
+    }
+    button{
+      width: 100px;
+      height: 30px;
+    }
+    .box{
+      background: #5f5;
+    }
+    .content{
+      border: 1px solid #000
+    }
+    .excurtion{
+      position: fixed;
+      bottom: 50px;
+      right: 50px;
+    }
+  </style>
+</head>
+<body>
+  <div style="background: #ff0;">
+    <img src="./01.png" style="vertical-align: top">
+
+  </div>
+  <div class="container">
+    <button>修改box颜色</button><br>
+    <button>还原box颜色</button><br>
+    <button>切换box颜色</button><br>
+  </div>
+  <div class="container" id="box">
+    box
+  </div>
+  <div class="container content">
+    <button>获取内容宽度</button><br>
+    <button>获取内容高度</button><br>
+    <button>获取盒子高度</button><br>
+    <button>获取盒子高度</button><br>
+    <button>获取box颜色</button><br>
+    <button>获取外部宽度</button><br>
+    <button>获取外部高度</button><br>
+  </div>
+  <div class="container excurtion">
+    <button>获取隐藏高度</button><br>
+    <button>获取隐藏宽度</button><br>
+    <button>获取图纵坐标</button><br>
+    <button>获取图横坐标</button><br>
+    <button>获取我横偏移</button><br>
+    <button>获取我纵偏移</button><br>
+  </div>
+  <ul>
+    <li>
+      <p></p>
+    </li>
+    <li>
+      <p></p>
+    </li>
+    <li>
+      <p></p>
+    </li>
+    <li>
+      <p></p>
+    </li>
+    <li>
+      <p></p>
+    </li>
+    <li>
+      <p></p>
+    </li>
+    <li>
+      <p></p>
+    </li>
+    <li>
+      <p></p>
+    </li>
+    <li>
+      <p></p>
+    </li>
+    <li>
+      <p></p>
+    </li>
+    <li>
+      <p></p>
+    </li>
+    <li>
+      <p></p>
+    </li>
+    <li>
+      <p></p>
+    </li>
+    <li>
+      <p></p>
+    </li>
+    <li>
+      <p></p>
+    </li>
+    <li>
+      <p></p>
+    </li>
+    <li>
+      <p></p>
+    </li>
+    <li>
+      <p></p>
+    </li>
+    <li>
+      <p></p>
+    </li>
+    <li>
+      <p></p>
+    </li>
+  </ul>
+</body>
+<script src="./jquery.js"></script>
+<script>
+  $(function(){
+    function btn(index, callback){
+      $('button').eq(index).click(callback)
+    }
+    // $('button').eq(0).click(function(){
+    //   $('#box').attr('background-color', '#55f')
+    // })
+    btn(0, function(){
+      $('#box').addClass('box')
+    })
+    btn(1, function(){
+      $('#box').removeClass('box')
+    })
+    btn(2, function(){
+      $('#box').toggleClass('box')
+    })
+    btn(3, function(){
+      console.log($('.content').innerWidth())
+    })
+    btn(4, function(){
+      console.log($('.content').innerHeight())
+    })
+    btn(5, function(){
+      console.log($('.content').outerWidth())
+    })
+    btn(6, function(){
+      console.log($('.content').outerHeight())
+    })
+    btn(7, function(){
+      console.log($('.content').css('background-color'))
+    })
+    btn(8, function(){
+      console.log($('.content').outerWidth(true))
+    })
+    btn(9, function(){
+      console.log($('.content').outerHeight(true))
+    })
+    btn(10, function(){
+      console.log($('img').scrollTop())
+    })
+    btn(11, function(){
+      console.log($('img').scrollLeft())
+    })
+    btn(12, function(){
+      console.log($('img').offset().top)
+    })
+    btn(13, function(){
+      console.log($('img').offset().left)
+    })
+    btn(14, function(){
+      console.log($('.content').position().top)
+    })
+    btn(15, function(){
+      console.log($('.content').position().left)
+    })
+  })
+</script>
+</html>

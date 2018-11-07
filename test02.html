@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .container{
+      width: 500px;
+      margin: 50px auto;
+      background: #f5f;
+    }
+    ul{
+      width: 400px;
+      list-style: none;
+      margin: 20px auto;
+      background: #5ff;
+    }
+    li{
+      width: 300px;
+      height: 50px;
+      line-height: 50px;
+      background: #ff5;
+      border: 1px solid #999;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <ul>
+      <li>123</li>
+      <li>123</li>
+      <li>123</li>
+      <li>123</li>
+      <li>123</li>
+    </ul>
+    <ul>
+      <li style="display:none">456</li>
+      <li style="display:none">456</li>
+      <li style="display:none">456</li>
+      <li style="display:none">456</li>
+      <li style="display:none">456</li>
+    </ul>
+    <ul>
+      <li alt="789 456">789</li>
+      <li alt="789">789</li>
+      <li alt="123">789</li>
+      <li>789</li>
+      <li>789</li>
+    </ul>
+    <ul>
+      <li><p>asd</p></li>
+      <li><p>asd</p></li>
+      <li><p>asd</p></li>
+      <li><p>asd</p></li>
+      <li><p>asd</p></li>
+    </ul>
+    <ul>
+      <li class="abc"></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+</body>
+<script src="./jquery.js"></script>
+<script>
+  $(function(){
+    // $('li:contains(123)').css('background-color', '#966')
+    // $('li:has(p)').css('background-color', '#669')
+    // $('li:empty').css('background-color', '#696')
+    // $('li:parent').css('background-color', '#960')
+    // $('li:visible').css('display', 'none')
+    // $('li:hidden').css('display', '')
+    // $('li[alt]').css('background-color', '#096')
+    // $('li[alt="123"]').css('background-color','#069')
+    // $('li[alt!="123"]').css('background-color', '#609')
+    // $('li[alt*="456"]').css('background-color', '#600')
+    // $('li[alt$="456"]').css('background-color', '#600')
+    // $('li[alt^="789"]').css('background-color', '#060')
+    $('li').filter(':has(p)').css('background-color', '#669')
+    $('li').slice(11,12).css('background-color', '#969')
+    $('li').filter(function(index){
+      if(index == 2){
+        return true
+      } else{
+        return false
+      }
+    }).css('background-color', '#996')
+    console.log($('li').eq(20).hasClass('abc'))
+    console.log($('li').eq(10).is('[alt]'))
+  })
+</script>
+</html>

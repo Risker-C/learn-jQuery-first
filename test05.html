@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .container{
+      margin: 10px;
+      display: inline-block;
+      padding: 50px;
+      background: #f55;
+      min-height: 50px;
+    }
+    button{
+      width: 100px;
+      height: 30px;
+    }
+    .remove{
+      min-width: 100px;
+      min-height: 20px;
+      background: #ff5;
+    }
+    .add{
+      padding: 10px;
+      background: #5ff;
+    }
+    .second{
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container zero">
+    <button>向下添加1</button><br>
+    <button>向下添加2</button><br>
+    <button>向上添加1</button><br>
+    <button>向上添加2</button><br>
+  </div>
+  <div class="container">
+    <button>在我上添加1</button><br>
+    <button>在我下添加1</button><br>
+    <button>在我上添加2</button><br>
+    <button>在我下添加2</button><br>
+  </div>
+  <div class="container">
+    <button>包裹1</button><br>
+    <button>整个包裹</button><br>
+    <button>包裹内部</button><br>
+  </div>
+
+  <div class="container third">
+    <div class="remove">
+      <button>连根拔起</button><br>
+      <button>删除内容</button><br>
+      <button>变化</button>
+    </div>
+    <button>解绑</button><br>
+  </div>
+  <div class="container first">
+    <button>浅复制</button><br>
+    <button>深复制</button><br>
+  </div>
+  <div class="second">
+
+  </div>
+</body>
+<script src="./jquery.js"></script>
+<script>
+  $(function(){
+    let html = '<div>添加的文字</div>'
+    let html2 = '<div>添加兄弟</div>'
+    let html3 = '<div>包裹内容</div>'
+    $('button').eq(0).click(function(){
+      $('.container').append(html)
+    })
+    $('button').eq(1).click(function(){
+      $(html).appendTo($('.container'))
+    })
+    $('button').eq(2).click(function(){
+      $('.container').prepend(html)
+    })
+    $('button').eq(3).click(function(){
+      $(html).prependTo($('.container'))
+    })
+    // 兄弟节点添加
+    $('button').eq(4).click(function(){
+      $(this).before(html2)
+    })
+    $('button').eq(5).click(function(){
+      $(this).after(html2)
+    })
+    $('button').eq(6).click(function(){
+      $(html2).insertBefore($(this))
+    })
+    $('button').eq(7).click(function(){
+      $(html2).insertAfter($(this))
+    })
+    // 包裹
+    $('button').eq(8).click(function(){
+      $('.container').wrap(html3)
+    })
+    $('button').eq(9).click(function(){
+      $('.container').wrapAll(html3)
+    })
+    $('button').eq(10).click(function(){
+      $('.container').wrapInner(html3)
+    })
+    // 删除节点
+    $('button').eq(11).click(function(){
+      $('.remove').remove()
+    })
+    $('button').eq(12).click(function(){
+      $('.remove').empty()
+    })
+    $('button').eq(13).click(function(){
+      $('.remove').toggleClass('add')
+    })
+    let someThing = ''
+    $('button').eq(14).click(function(){
+      if (someThing) {
+        $('.third').append(someThing)
+        $(this).text('绑上')
+        someThing = ''
+      } else {
+        $(this).text('解绑')
+        someThing = $('.remove').detach()
+      }
+    })
+    // 复制
+    $('button').eq(15).click(function(){
+      $('.zero').clone().appendTo('.second')
+    })
+    $('button').eq(16).click(function(){
+      $('.zero').clone(true,true).appendTo('.second')
+    })
+  })
+</script>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .container{
+      margin: 50px;
+      position: relative;
+    }
+    .box{
+      width: 200px;
+      height: 200px;
+      background: #f55;
+      position: absolute;
+    }
+    .buttons{
+      position:absolute;
+      top: 10px;
+      right: 10px;
+    }
+    button{
+      margin: 5px;
+      width: 100px;
+      height: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="box">
+
+    </div>
+  </div>
+  <div class="buttons">
+      <button>显示</button>
+      <button>隐藏</button>
+      <button>切换</button><br>
+      <button>向上隐藏</button>
+      <button>向下显示</button>
+      <button>滑动切换</button><br>
+      <button>透明度隐藏</button>
+      <button>透明度显示</button>
+      <button>透明度设置</button>
+      <input id="id" type="text" style="width:30px;"/>
+      <button>透明度切换</button><br>
+      <button>GO</button>
+      <button>STOP</button>
+  </div>
+</body>
+<script src="./jquery.js"></script>
+<script>
+  // 默认隐藏
+  $('button').eq(0).click(function(){
+    $('.box').show(2000)
+  })
+  $('button').eq(1).click(function(){
+    console.log('???')
+    $('.box').hide(2000)
+  })
+  $('button').eq(2).click(function(){
+    $('.box').toggle(2000)
+  })
+  // 向上隐藏
+  $('button').eq(3).click(function(){
+    $('.box').slideUp(2000)
+  })
+  $('button').eq(4).click(function(){
+    $('.box').slideDown(2000)
+  })
+  $('button').eq(5).click(function(){
+    $('.box').slideToggle(2000)
+  })
+  // 透明度隐藏
+  $('button').eq(6).click(function(){
+    $('.box').fadeOut(2000)
+  })
+  $('button').eq(7).click(function(){
+    $('.box').fadeIn(2000)
+  })
+  $('button').eq(8).click(function(){
+    let num = parseFloat($('#id').val())
+    console.log(num)
+    $('.box').fadeTo(1000, num)
+  })
+  $('button').eq(9).click(function(){
+    $('.box').fadeToggle(2000)
+  })
+  // GO
+  $('button').eq(10).click(function(){
+    $('.box').animate({
+      top: 200
+    }, 3000, 'swing', function(){
+      $(this).animate({
+        left: 300
+      }, 3000, 'swing')
+    })
+  })
+  $('button').eq(11).click(function(){
+    $('.box').stop()
+  })
+</script>
+</html>

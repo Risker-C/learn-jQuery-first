@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .container{
+      width: 200px;
+      height: 200px;
+      background: #f55;
+    }
+    .box{
+      width: 100px;
+      height: 100px;
+      background: #55f;
+    }
+  </style>
+</head>
+<body>
+  <h1>事件委托</h1>
+  <button>添加</button>
+  <button>取消委托</button>
+  <ul>
+    <li>点击按钮添加</li>
+  </ul>
+  <h2>事件冒泡</h2>
+  <div class="container">
+    <div class="box">
+      事件冒泡
+    </div>
+  </div>
+</body>
+<script src="./jquery.js"></script>
+<script>
+  $(function(){
+    let index = 1
+    $('button').eq(0).on('click', function(){
+      $('ul').append(`<li>新添加第${index}的li标签</li>`)
+      index++
+    })
+    // 方法一 delegate 已被on取代
+    $('ul').delegate('li','click',function(event){
+      alert($(this).text())
+      console.log(event.pageX, event.pageY)
+    })
+    // 取消委托
+    $('button').eq(1).on('click', function(){
+      $('ul').undelegate('li', 'click')
+    })
+    // 方法二, on 
+    // $('ul').on('click', 'li', function(){
+    //   alert($(this).text())
+    // })
+    // // 取消委托
+    // $('button').eq(1).on('click', function(){
+    //   $('ul').off('click', 'li')
+    // })
+    $('.container').on('click', function(){
+      console.log('container')
+    })
+    $('.box').on('click', function(event){
+      // console.log('box')
+      // 阻止事件冒泡
+      // NO.1
+      // return false
+      // NO.2
+      // event.stopPropagation();
+      // NO.3 在所有事件上添加，包括父元素，只有当事件发生在自己身上才触发
+      // if(event.target == event.currentTarget){
+      //   console.log('box')
+      // }
+    })
+  })
+</script>
+</html>

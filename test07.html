@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    p{
+      background: #55f;
+      width: 50px;
+      height: 20px;
+    }
+    .container{
+      width: 200px;
+      height: 200px;
+      overflow: auto;
+      border: 1px solid #000;
+    }
+    .box{
+      width: 200px;
+      height: 200px;
+      background: #55f;
+    }
+    .center{
+      width: 100px;
+      height: 100px;
+      background: #5f5;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <ul>
+      <li>
+        <p></p>
+      </li>
+      <li>
+        <p></p>
+      </li>
+      <li>
+        <p></p>
+      </li>
+      <li>
+        <p></p>
+      </li>
+      <li>
+        <p></p>
+      </li>
+      <li>
+        <p></p>
+      </li>
+      <li>
+        <p></p>
+      </li>
+      <li>
+        <p></p>
+      </li>
+      <li>
+        <p></p>
+      </li>
+      <li>
+        <p></p>
+      </li>
+    </ul>
+  </div>
+  <div class="input">
+      <input type="text">
+  </div>
+  <div class="box">
+    <div class="center">
+        鼠标事件
+    </div>
+  </div>
+  <div>
+    键盘事件<br>
+    <input type="text">
+  </div>
+</body>
+<script src="./jquery.js"></script>
+<script>
+  $('.container').scroll(function(){
+    console.log('滚动了')
+  })
+  $(window).resize(function(){
+    console.log('窗口变化了')
+  })
+  $('input').select(function(){
+    console.log('选中了')
+  })
+  //焦点事件
+  $('input').eq(0).focus(function(){
+    console.log('得到焦点-focus')
+  })
+  $('input').eq(0).blur(function(){
+    console.log('失去焦点-blur')
+  })
+  $('.input').eq(0).focusin(function(){
+    $('<span>获得焦点焦点-focusin</span>').appendTo(this).fadeOut(1000)
+  })
+  $('.input').eq(0).focusout(function(){
+    $('<span>失去焦点-focusout</span>').appendTo(this).fadeOut(1000)
+  })
+  // 鼠标事件
+  $('.box').click(function(){
+    console.log('点击我了')
+  })
+  $('.box').dblclick(() => {
+    console.log('双击我了')
+  })
+  $('.box').mousedown(() => {
+    console.log('点下来了')
+  })
+  $('.box').mouseup(() => {
+    console.log('松开了')
+  })
+  $('.box').mousemove(() => {
+    console.log('鼠标在移动')
+  })
+  $('.box').mouseover(() => {
+    console.log('鼠标进来了')
+    $('.box').css('background-color', '#f55')
+  })
+  $('.box').mouseout(() => {
+    console.log('鼠标出去了')
+    $('.box').css('background-color', '#55f')
+    alert('??')
+    // 移动到子元素上会有一个移出事件
+  })
+  // 解决上面的问题 此时使用箭头函数，this是指向window的，所以不能够使用this
+  $('.box').hover(function() {
+    $(this).children().css('background-color', '#f05')
+  }, function() {
+    $(this).children().css('background-color', '#5f5')
+  })
+
+  // 键盘事件
+  $('input').eq(1).keydown((event) => {
+    console.log('keydown:'+event.keyCode)
+  })
+  $('input').eq(1).keyup((event) => {
+    console.log('keyup:'+event.keyCode)
+  })
+  $('input').eq(1).keypress((event) => {
+    console.log('keypress:'+event.keyCode)
+  })
+</script>
+</html>
